@@ -68,17 +68,17 @@
 <div class="pagebreak"></div>
 <h1>1. Análisis Exploratorio de Datos (EDA)</h1>
 
-<p>Trabajamos el dataset siguiendo el ciclo de vida de los datos que vimos en clase. Partimos de los
-datos crudos, hacemos el análisis exploratorio para encontrar los problemas del dataset (datos
-vacíos, duplicados, correlaciones, outliers y ruido), y a partir de ahí limpiamos y transformamos
-los datos. En cada fase comentamos los desafíos que aparecen cuando este flujo se lleva a escala
-Big Data. Todo el análisis se hizo en Python con <code>xarray</code>, <code>pandas</code>,
-<code>matplotlib</code> y <code>seaborn</code>; el código está en el Anexo A y es reproducible.</p>
+<p>Trabajé el dataset siguiendo el ciclo de vida de los datos que vi en clase. Partí de los datos
+crudos, hice el análisis exploratorio para encontrar los problemas del dataset (datos vacíos,
+duplicados, correlaciones, outliers y ruido), y a partir de ahí limpié y transformé los datos. En
+cada fase comento los desafíos que aparecen cuando este flujo se lleva a escala Big Data. Todo el
+análisis lo hice en Python con <code>xarray</code>, <code>pandas</code>, <code>matplotlib</code> y
+<code>seaborn</code>; el código está en el Anexo A y es reproducible.</p>
 
 <h2>1.1 Tipo de datos y origen</h2>
 <p>El dataset viene del programa <b>ARM (Atmospheric Radiation Measurement)</b> del Departamento de
 Energía de EE.UU. (Oak Ridge National Laboratory), el mismo caso de arquitectura Big Data en
-producción que se presentó en clase. Corresponde al instrumento <b>MET (Surface Meteorological
+producción que vi en clase. Corresponde al instrumento <b>MET (Surface Meteorological
 Instrumentation)</b> de la instalación <b>E32</b> del observatorio <b>Southern Great Plains
 (SGP)</b>, en Medford, Oklahoma (lat 36.819°N, lon 97.820°W, alt 328 m s.n.m.).</p>
 
@@ -87,7 +87,7 @@ Instrumentation)</b> de la instalación <b>E32</b> del observatorio <b>Southern 
 <tr><td><b>Tipo de datos</b></td><td>Serie temporal multivariada de sensores. Datos estructurados: medidas numéricas continuas más flags de calidad discretos. Es instrumentación científica de tipo IoT.</td></tr>
 <tr><td><b>Origen</b></td><td>Sensores físicos (termohigrómetro HMP155, barómetro, anemómetro, pluviómetro de balancín TBRG) que escriben a un datalogger. El proceso de ingesta es <code>met_ingest -s sgp -f E32</code> (versión ingest-met-4.42).</td></tr>
 <tr><td><b>Formato</b></td><td><b>NetCDF</b> (Network Common Data Form), un formato binario autodescriptivo que es el estándar de la comunidad atmosférica. Da soporte a la <b>I</b> (interoperabilidad) de los principios FAIR.</td></tr>
-<tr><td><b>Nivel de procesamiento</b></td><td><b>b1</b>: datos calibrados que ya pasaron el control de calidad automático del ARM. Los niveles vistos en clase son 00 (brutos), a1 (calibrados) y b1 (con QC aplicado).</td></tr>
+<tr><td><b>Nivel de procesamiento</b></td><td><b>b1</b>: datos calibrados que ya pasaron el control de calidad automático del ARM. Los niveles que vi en clase son 00 (brutos), a1 (calibrados) y b1 (con QC aplicado).</td></tr>
 <tr><td><b>Frecuencia</b></td><td>Promedios cada <b>60 segundos</b> (resolución de 1 minuto), año completo 2021.</td></tr>
 <tr><td><b>Identificación FAIR</b></td><td>Datastream <code>sgpmetE32.b1</code>, accesible desde el portal ARM Data Discovery, con metadatos ricos y documentación del instrumento (principios <b>F</b>indable, <b>A</b>ccessible, <b>I</b>nteroperable, <b>R</b>eusable).</td></tr>
 </table>
@@ -113,7 +113,7 @@ de datos, además de la coordenada <code>time</code>):</p>
 </tbody>
 </table>
 
-<p>Los metadatos globales del archivo son la base de la gobernanza de datos que vimos en clase.
+<p>Los metadatos globales del archivo son la base de la gobernanza de datos que vi en clase.
 Documentan el sitio (<code>site_id: sgp</code>, <code>facility_id: E32</code>), el datastream
 (<code>sgpmetE32.b1</code>), la versión del software de ingesta, el intervalo de promediado (60 s),
 las ecuaciones de corrección del pluviómetro y la semántica de cada bit de calidad. Gracias a esto
@@ -156,7 +156,7 @@ son solo descriptivos.</p>
 <div class="pagebreak"></div>
 <h2>1.3 Detección de valores atípicos (outliers) y ruido</h2>
 
-<p>Aplicamos dos métodos complementarios vistos en clase: el criterio <b>IQR</b> (valores fuera de
+<p>Apliqué dos métodos complementarios que vi en clase: el criterio <b>IQR</b> (valores fuera de
 [Q1 − 1.5·IQR, Q3 + 1.5·IQR]) y el <b>z-score</b> (|z| &gt; 3).</p>
 
 <table>
@@ -182,8 +182,8 @@ son solo descriptivos.</p>
 <div class="highlight">
 <b>Interpretación crítica.</b> En datos meteorológicos un outlier estadístico no es lo mismo que un
 error. Los 1,760 outliers de temperatura son la <b>ola de frío histórica de febrero de 2021</b>
-(mínimo −27.1 °C en Oklahoma). Es un evento real y con valor científico, así que no se elimina.
-Aparte de los outliers, sí encontramos dos cosas que conviene tratar:
+(mínimo −27.1 °C en Oklahoma). Es un evento real y con valor científico, así que no lo elimino.
+Aparte de los outliers, sí encontré dos cosas que conviene tratar:
 <ul>
   <li><b>22,463 registros (4.31%) con humedad relativa &gt; 100%.</b> No es un valor imposible: el
   sensor capacitivo HMP155 reporta hasta ~104% cerca de la saturación y el propio ARM fija
@@ -202,35 +202,35 @@ Aparte de los outliers, sí encontramos dos cosas que conviene tratar:
   sensor, más frecuentes en los meses húmedos de mayo a julio. Completitud temporal global: 99.16%.</figcaption>
 </figure>
 
-<p>Vale la pena notar que los <b>flags de calidad (QC)</b> del propio dataset apenas marcan 7
+<p>Un detalle interesante: los <b>flags de calidad (QC)</b> del propio dataset apenas marcan 7
 registros en todo el año. Al ser nivel <b>b1</b>, los datos ya pasaron el control de calidad
-automático del ARM. Esto muestra el concepto de <b>niveles de datos</b> visto en clase y explica
+automático del ARM. Esto refleja el concepto de <b>niveles de datos</b> que vi en clase y explica
 por qué el ruido restante (como la HR sobre 100%, que el rango válido del instrumento permite hasta
 104%) necesita reglas físicas adicionales para tratarlo en el análisis.</p>
 
 <div class="pagebreak"></div>
 <h2>1.4 Limpieza y transformación de datos</h2>
 
-<p>En la fase de limpieza del ciclo metodológico aplicamos este pipeline (código en el Anexo A):</p>
+<p>En la fase de limpieza del ciclo metodológico apliqué este pipeline (código en el Anexo A):</p>
 <ol>
   <li><b>Enmascarado por QC:</b> todo registro con <code>qc_* ≠ 0</code> pasa a <code>NaN</code>,
   siguiendo la regla del ARM de que un valor QC de cero significa que ninguna prueba falló.</li>
   <li><b>Acotado físico de la humedad:</b> los valores &gt; 100% se recortan al techo de saturación
-  (100%) con <code>clip(upper=100)</code>. Optamos por acotar en vez de descartar para conservar el
+  (100%) con <code>clip(upper=100)</code>. Opté por acotar en vez de descartar para conservar el
   dato, ya que se trata de un comportamiento conocido del sensor y no de un error. Así no se pierde
   ningún registro de una variable válida.</li>
   <li><b>Imputación de faltantes:</b> interpolación lineal <b>temporal</b> limitada a tramos de
-  hasta 60 registros consecutivos (≈ 60 minutos). Los huecos más largos se quedan como
-  <code>NaN</code> para no inventar datos; preferimos cuidar la veracidad antes que forzar la
+  hasta 60 registros consecutivos (≈ 60 minutos). Los huecos más largos los dejo como
+  <code>NaN</code> para no inventar datos; prefiero cuidar la veracidad antes que forzar la
   completitud.</li>
-  <li><b>Normalización:</b> generamos versiones <b>Min-Max</b> ([0,1]) y <b>Z-score</b> (μ=0, σ=1)
+  <li><b>Normalización:</b> generé versiones <b>Min-Max</b> ([0,1]) y <b>Z-score</b> (μ=0, σ=1)
   de las variables. Hacen falta para algoritmos sensibles a la escala, porque las unidades
   originales son muy dispares (por ejemplo, la presión varía en un rango de ~4 kPa y la temperatura
   en unos 67 °C).</li>
 </ol>
 
 <p>Con el acotado de la humedad y la interpolación de tramos cortos, las ocho variables principales
-quedan con <b>100% de completitud</b> tras la limpieza. Conviene tener presente que la normalización
+quedan con <b>100% de completitud</b> tras la limpieza. Hay que tener presente que la normalización
 Min-Max es sensible a extremos: el evento de febrero comprime el resto de los valores de temperatura,
 por lo que para modelos que lo requieran sería razonable un escalado robusto (mediana/IQR) o
 winsorizar antes de normalizar, manteniendo el evento en la serie cruda.</p>
@@ -274,7 +274,7 @@ winsorizar antes de normalizar, manteniendo el evento en la serie cruda.</p>
 <p>Este dataset es una sola estación, un solo instrumento y un solo año, y ya tiene medio millón de
 registros y 70.9 MB. El programa ARM opera cientos de instrumentos en decenas de instalaciones desde
 1996, con colecta continua que llega a petabytes. Ese es el escenario Big Data real que se discutió
-en clase. Vemos los desafíos por fase del ciclo de vida y los conectamos con las <b>V's de Big
+en clase. Reviso los desafíos por fase del ciclo de vida y los conecto con las <b>V's de Big
 Data</b>:</p>
 
 <table>
@@ -312,9 +312,9 @@ entorno Big Data.</p>
 <div class="pagebreak"></div>
 <h1>2. Arquitectura Escalable de Big Data para Análisis de Datos</h1>
 
-<p>Diseñamos una arquitectura escalable para gestionar y analizar datos meteorológicos como los del
+<p>Diseñé una arquitectura escalable para gestionar y analizar datos meteorológicos como los del
 programa ARM, que sirve para cualquier flujo masivo de datos de sensores. El diseño sigue el modelo
-de capas visto en clase (plataforma de almacenamiento y procesamiento distribuido, gobernanza FAIR y
+de capas que vi en clase (plataforma de almacenamiento y procesamiento distribuido, gobernanza FAIR y
 capa de aplicaciones) y el flujo
 <b>Ingestión → Almacenamiento → Procesamiento → Catalogación/Metadatos → Indexado/Consulta →
 Visualización/Serving</b>, con <b>Monitoreo y Seguridad</b> como capa transversal.</p>
@@ -331,10 +331,10 @@ Visualización/Serving</b>, con <b>Monitoreo y Seguridad</b> como capa transvers
 <h3>Paso 1, Ingestión</h3>
 <p>En cada estación, un colector edge (o un agente productor) toma la salida del datalogger y la
 publica hacia el sistema central. Esto es más realista que conectar el datalogger directo a la red,
-sobre todo en sitios remotos. Para el flujo en <b>tiempo real</b> usamos <b>Apache Kafka (o Amazon
+sobre todo en sitios remotos. Para el flujo en <b>tiempo real</b> uso <b>Apache Kafka (o Amazon
 MSK)</b>, con un tópico por datastream (por ejemplo <code>sgp.met.E32</code>), que desacopla
 productores de consumidores y aguanta picos de carga. Las cargas <b>batch</b> de archivos
-históricos <code>.dat</code> se suben directamente a S3, sin pasar por Kafka. En la ingesta validamos
+históricos <code>.dat</code> se suben directamente a S3, sin pasar por Kafka. En la ingesta valido
 el esquema contra un <b>Schema Registry</b> (versiona y verifica los contratos de datos) y los
 registros que fallan la validación van a una <b>cola de descarte (DLQ) o zona <code>quarantine/</code></b>
 para reprocesarlos después. <b>Escalabilidad:</b> Kafka reparte el tópico entre particiones, así que
@@ -345,10 +345,10 @@ agregar estaciones solo pide más particiones.</p>
 <h3>Paso 2, Almacenamiento</h3>
 <p>Un <b>data lake en AWS S3</b> organizado en zonas que replican los niveles de datos del ARM:
 <code>raw/</code> (nivel 00, datos brutos inmutables), <code>clean/</code> (nivel b1, con QC) y
-<code>analytics/</code> (agregados). Guardamos en <b>NetCDF</b> (interoperabilidad científica) y
+<code>analytics/</code> (agregados). Guardo en <b>NetCDF</b> (interoperabilidad científica) y
 <b>Parquet</b> particionado por <code>site/facility/year/month</code>, una jerarquía que permite podar
 particiones en las consultas. Para accesos operativos de baja latencia (la última lectura de cada
-estación) usamos una base <b>NoSQL</b>: <b>DynamoDB</b> (partition key = estación, sort key =
+estación) uso una base <b>NoSQL</b>: <b>DynamoDB</b> (partition key = estación, sort key =
 timestamp) o <b>Cassandra</b> si se prefiere controlar el cluster. <b>Escalabilidad:</b> S3 crece sin
 límite práctico y el particionado evita escanear datos que no se necesitan.</p>
 </div>
@@ -356,14 +356,14 @@ límite práctico y el particionado evita escanear datos que no se necesitan.</p
 <div class="arch-step">
 <h3>Paso 3, Procesamiento</h3>
 <p><b>Apache Spark sobre AWS EMR</b> (nodo primario con el driver y nodos core/task con executors,
-como se vio en clase). Montamos una <b>arquitectura Lambda</b> con sus tres capas. La capa
+como se vio en clase). Monto una <b>arquitectura Lambda</b> con sus tres capas. La capa
 <b>batch</b> corre el pipeline de limpieza del EDA de forma <b>incremental</b>, procesando solo las
 particiones nuevas o afectadas (el día o mes recién aterrizado), y reserva el recálculo completo del
 histórico para cuando cambia la lógica o hace falta un backfill. La capa de <b>velocidad</b> (Spark
 Structured Streaming consumiendo de Kafka) calcula métricas casi en tiempo real y dispara alertas de
 eventos extremos. La capa de <b>serving</b> reconcilia las vistas batch e incremental para que cada
-consulta lea la combinación correcta. <b>MLlib</b> permite entrenar modelos distribuidos. Elegimos
-Lambda sobre Kappa porque queremos batch reproducible sobre el histórico, asumiendo el costo de
+consulta lea la combinación correcta. <b>MLlib</b> permite entrenar modelos distribuidos. Elijo
+Lambda sobre Kappa porque busco un batch reproducible sobre el histórico, asumiendo el costo de
 mantener dos rutas de cómputo. <b>Escalabilidad:</b> EMR agrega y quita nodos según la carga
 (scale-out horizontal).</p>
 </div>
@@ -382,7 +382,7 @@ data lake de petabytes se vuelve un "data swamp" donde no se encuentra nada.</p>
 <p><b>Amazon Athena</b> permite consultas SQL serverless directamente sobre el Parquet del data lake
 usando el catálogo de Glue (se paga por datos escaneados, y el particionado del Paso 2 reduce ese
 costo). Para búsqueda de texto y metadatos y para exploración facetada, como el portal Data Discovery
-del ARM, usamos <b>OpenSearch Serverless</b>. Los científicos de datos también consultan con
+del ARM, uso <b>OpenSearch Serverless</b>. Los científicos de datos también consultan con
 <b>Spark SQL</b> desde notebooks. <b>Escalabilidad:</b> Athena es serverless; DynamoDB se usa en modo
 on-demand y OpenSearch Serverless escala solo.</p>
 </div>
@@ -407,8 +407,8 @@ tránsito (TLS), auditoría con CloudTrail y control de acceso por zona del data
 </div>
 
 <h2>2.2 Ejemplo práctico: el viaje de un dato</h2>
-<p>Seguimos una lectura de temperatura de la estación SGP E32 del 15 de febrero de 2021, durante la
-ola de frío, con −27.1 °C:</p>
+<p>Sigo el recorrido de una lectura de temperatura de la estación SGP E32 del 15 de febrero de 2021,
+durante la ola de frío, con −27.1 °C:</p>
 <ol>
 <li><b>00:01 UTC, Ingestión:</b> el datalogger entrega su promedio del último minuto al colector
 edge de la estación, que lo publica
@@ -449,7 +449,7 @@ separar almacenamiento de cómputo (S3 frente a EMR) deja apagar los clusters cu
 
 <!-- ============================ ANEXO ============================ -->
 <div class="pagebreak"></div>
-<h1>Anexo A — Reproducibilidad: código esencial del EDA</h1>
+<h1>Anexo A. Reproducibilidad: código esencial del EDA</h1>
 <p class="small">Entorno: Python 3.14, xarray 2026.4, pandas, numpy, matplotlib, seaborn.
 Script completo: <code>src/eda_arm_sgpmet.py</code>.</p>
 
