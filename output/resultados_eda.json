@@ -1,0 +1,330 @@
+{
+  "n_records": 521200,
+  "n_vars": 31,
+  "time_start": "2021-01-01T00:00",
+  "time_end": "2021-12-31T23:59",
+  "lat": 36.819000244140625,
+  "lon": -97.81990051269531,
+  "alt": 328.0,
+  "expected_records": 525600,
+  "missing_minutes": 4400,
+  "temporal_completeness_pct": 99.16,
+  "missing": {
+    "temp_mean": {
+      "nan": 1,
+      "qc_flagged": 2,
+      "pct_flagged": 0.0
+    },
+    "rh_mean": {
+      "nan": 4,
+      "qc_flagged": 4,
+      "pct_flagged": 0.001
+    },
+    "atmos_pressure": {
+      "nan": 0,
+      "qc_flagged": 0,
+      "pct_flagged": 0.0
+    },
+    "vapor_pressure_mean": {
+      "nan": 0,
+      "qc_flagged": 1,
+      "pct_flagged": 0.0
+    },
+    "wspd_arith_mean": {
+      "nan": 0,
+      "qc_flagged": 0,
+      "pct_flagged": 0.0
+    },
+    "wdir_vec_mean": {
+      "nan": 0,
+      "qc_flagged": 0,
+      "pct_flagged": 0.0
+    },
+    "tbrg_precip_total_corr": {
+      "nan": 0,
+      "qc_flagged": 0,
+      "pct_flagged": 0.0
+    },
+    "logger_volt": {
+      "nan": 0,
+      "qc_flagged": 0,
+      "pct_flagged": 0.0
+    }
+  },
+  "describe_raw": {
+    "temp_mean": {
+      "count": 521199.0,
+      "mean": 15.05,
+      "std": 11.51,
+      "min": -27.14,
+      "5%": -3.72,
+      "25%": 6.65,
+      "50%": 16.16,
+      "75%": 23.48,
+      "95%": 33.13,
+      "max": 39.91,
+      "skew": -0.3100000023841858
+    },
+    "rh_mean": {
+      "count": 521196.0,
+      "mean": 70.2,
+      "std": 22.04,
+      "min": 14.22,
+      "5%": 30.74,
+      "25%": 52.81,
+      "50%": 73.67,
+      "75%": 89.0,
+      "95%": 99.7,
+      "max": 101.5,
+      "skew": -0.4300000071525574
+    },
+    "atmos_pressure": {
+      "count": 521200.0,
+      "mean": 97.65,
+      "std": 0.66,
+      "min": 95.52,
+      "5%": 96.51,
+      "25%": 97.26,
+      "50%": 97.64,
+      "75%": 98.04,
+      "95%": 98.83,
+      "max": 99.56,
+      "skew": 0.019999999552965164
+    },
+    "vapor_pressure_mean": {
+      "count": 521200.0,
+      "mean": 1.36,
+      "std": 0.82,
+      "min": 0.0,
+      "5%": 0.33,
+      "25%": 0.63,
+      "50%": 1.12,
+      "75%": 2.09,
+      "95%": 2.76,
+      "max": 3.63,
+      "skew": 0.4000000059604645
+    },
+    "wspd_arith_mean": {
+      "count": 521200.0,
+      "mean": 4.7,
+      "std": 2.67,
+      "min": 0.0,
+      "5%": 1.26,
+      "25%": 2.85,
+      "50%": 4.09,
+      "75%": 6.17,
+      "95%": 9.9,
+      "max": 22.95,
+      "skew": 1.0399999618530273
+    },
+    "wdir_vec_mean": {
+      "count": 521200.0,
+      "mean": 157.7,
+      "std": 95.98,
+      "min": 0.0,
+      "5%": 12.12,
+      "25%": 91.7,
+      "50%": 153.2,
+      "75%": 201.8,
+      "95%": 340.9,
+      "max": 360.0,
+      "skew": 0.36000001430511475
+    },
+    "tbrg_precip_total_corr": {
+      "count": 521200.0,
+      "mean": 0.0,
+      "std": 0.02,
+      "min": 0.0,
+      "5%": 0.0,
+      "25%": 0.0,
+      "50%": 0.0,
+      "75%": 0.0,
+      "95%": 0.0,
+      "max": 2.11,
+      "skew": 30.510000228881836
+    },
+    "logger_volt": {
+      "count": 521200.0,
+      "mean": 13.09,
+      "std": 0.27,
+      "min": 12.19,
+      "5%": 12.71,
+      "25%": 12.89,
+      "50%": 13.05,
+      "75%": 13.27,
+      "95%": 13.57,
+      "max": 14.18,
+      "skew": 0.5899999737739563
+    }
+  },
+  "outliers": {
+    "temp_mean": {
+      "iqr_low": -18.6,
+      "iqr_high": 48.73,
+      "n_outliers_iqr": 1760,
+      "pct_iqr": 0.338,
+      "n_outliers_z3": 1609,
+      "pct_z3": 0.309
+    },
+    "rh_mean": {
+      "iqr_low": -1.47,
+      "iqr_high": 143.28,
+      "n_outliers_iqr": 0,
+      "pct_iqr": 0.0,
+      "n_outliers_z3": 0,
+      "pct_z3": 0.0
+    },
+    "atmos_pressure": {
+      "iqr_low": 96.09,
+      "iqr_high": 99.21,
+      "n_outliers_iqr": 10432,
+      "pct_iqr": 2.002,
+      "n_outliers_z3": 361,
+      "pct_z3": 0.069
+    },
+    "wspd_arith_mean": {
+      "iqr_low": -2.14,
+      "iqr_high": 11.16,
+      "n_outliers_iqr": 12769,
+      "pct_iqr": 2.45,
+      "n_outliers_z3": 5188,
+      "pct_z3": 0.995
+    }
+  },
+  "rh_over_100": 22463,
+  "temp_jumps_gt5C_per_min": 5,
+  "dup_timestamps": 0,
+  "time_monotonic_increasing": true,
+  "masked_after_qc": {
+    "temp_mean": 2,
+    "rh_mean": 4,
+    "atmos_pressure": 0,
+    "vapor_pressure_mean": 1,
+    "wspd_arith_mean": 0,
+    "wdir_vec_mean": 0,
+    "tbrg_precip_total_corr": 0,
+    "logger_volt": 0
+  },
+  "remaining_nan_after_imputation": {
+    "temp_mean": 0,
+    "rh_mean": 0,
+    "atmos_pressure": 0,
+    "vapor_pressure_mean": 0,
+    "wspd_arith_mean": 0,
+    "wdir_vec_mean": 0,
+    "tbrg_precip_total_corr": 0,
+    "logger_volt": 0
+  },
+  "completeness_after_clean_pct": {
+    "temp_mean": 100.0,
+    "rh_mean": 100.0,
+    "atmos_pressure": 100.0,
+    "vapor_pressure_mean": 100.0,
+    "wspd_arith_mean": 100.0,
+    "wdir_vec_mean": 100.0,
+    "tbrg_precip_total_corr": 100.0,
+    "logger_volt": 100.0
+  },
+  "normalization_check": {
+    "minmax_min": {
+      "temp_mean": 0.0,
+      "rh_mean": 0.0,
+      "atmos_pressure": 0.0,
+      "wspd_arith_mean": 0.0
+    },
+    "minmax_max": {
+      "temp_mean": 1.0,
+      "rh_mean": 1.0,
+      "atmos_pressure": 1.0,
+      "wspd_arith_mean": 1.0
+    },
+    "zscore_mean": {
+      "temp_mean": -0.0,
+      "rh_mean": 0.0,
+      "atmos_pressure": 0.0,
+      "wspd_arith_mean": -0.0
+    },
+    "zscore_std": {
+      "temp_mean": 1.0,
+      "rh_mean": 1.0,
+      "atmos_pressure": 1.0,
+      "wspd_arith_mean": 1.0
+    }
+  },
+  "gaps_by_month": {
+    "Ene": 120,
+    "Feb": 660,
+    "Mar": 1880,
+    "Abr": 0,
+    "May": 0,
+    "Jun": 0,
+    "Jul": 1020,
+    "Ago": 0,
+    "Sep": 0,
+    "Oct": 720,
+    "Nov": 0,
+    "Dic": 0
+  },
+  "correlations": {
+    "temp_mean": {
+      "temp_mean": 1.0,
+      "rh_mean": -0.361,
+      "atmos_pressure": -0.43,
+      "vapor_pressure_mean": 0.818,
+      "wspd_arith_mean": 0.147,
+      "tbrg_precip_total_corr": 0.01
+    },
+    "rh_mean": {
+      "temp_mean": -0.361,
+      "rh_mean": 1.0,
+      "atmos_pressure": 0.097,
+      "vapor_pressure_mean": 0.164,
+      "wspd_arith_mean": -0.371,
+      "tbrg_precip_total_corr": 0.061
+    },
+    "atmos_pressure": {
+      "temp_mean": -0.43,
+      "rh_mean": 0.097,
+      "atmos_pressure": 1.0,
+      "vapor_pressure_mean": -0.343,
+      "wspd_arith_mean": -0.3,
+      "tbrg_precip_total_corr": -0.024
+    },
+    "vapor_pressure_mean": {
+      "temp_mean": 0.818,
+      "rh_mean": 0.164,
+      "atmos_pressure": -0.343,
+      "vapor_pressure_mean": 1.0,
+      "wspd_arith_mean": -0.054,
+      "tbrg_precip_total_corr": 0.042
+    },
+    "wspd_arith_mean": {
+      "temp_mean": 0.147,
+      "rh_mean": -0.371,
+      "atmos_pressure": -0.3,
+      "vapor_pressure_mean": -0.054,
+      "wspd_arith_mean": 1.0,
+      "tbrg_precip_total_corr": 0.025
+    },
+    "tbrg_precip_total_corr": {
+      "temp_mean": 0.01,
+      "rh_mean": 0.061,
+      "atmos_pressure": -0.024,
+      "vapor_pressure_mean": 0.042,
+      "wspd_arith_mean": 0.025,
+      "tbrg_precip_total_corr": 1.0
+    }
+  },
+  "corr_temp_vp": 0.82,
+  "corr_temp_press": -0.43,
+  "corr_temp_rh": -0.36,
+  "worst_week_start": "2021-06-27",
+  "worst_week_end": "2021-07-04",
+  "worst_week_rh_bad": 3509,
+  "precip_annual_mm": 641.1,
+  "temp_annual_mean": 15.05,
+  "temp_min": -27.1,
+  "temp_max": 39.9,
+  "file_size_mb": 70.9,
+  "mem_size_mb": 54.4
+}

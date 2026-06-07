@@ -1,0 +1,11 @@
+# Entorno virtual
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Dataset crudo (70.9 MB), se descarga con src/descargar_dataset.py
+data/*.nc
+
+# Sistema
+.DS_Store
